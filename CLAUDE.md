@@ -50,6 +50,26 @@ src/
     └── Properties.jsx       # 物件一覧（ダミーデータ表示）
 ```
 
+## Database Setup
+
+**初回セットアップ時に必ず実行すること。**
+
+[sql/create_properties_table.sql](sql/create_properties_table.sql) を Supabase ダッシュボード > SQL Editor に貼り付けて実行する。これにより `properties` テーブルと RLS ポリシー4件が作成される。
+
+### テーブル: `properties`
+
+| カラム | 型 | 説明 |
+|---|---|---|
+| `id` | UUID | 主キー（自動生成） |
+| `name` | TEXT | 物件名 |
+| `rent` | INTEGER | 家賃（円） |
+| `area` | TEXT | エリア名 |
+| `floor_plan` | TEXT | 間取り |
+| `user_id` | UUID | 登録ユーザー（auth.users への外部キー） |
+| `created_at` | TIMESTAMPTZ | 登録日時 |
+
+RLS により `auth.uid() = user_id` の行のみ SELECT/INSERT/UPDATE/DELETE 可能。
+
 ## Environment Variables
 
 `.env` ファイルに以下を設定（`.gitignore` により Git 管理外）。`.env.example` を参考にすること。
