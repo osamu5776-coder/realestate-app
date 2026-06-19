@@ -1,0 +1,15 @@
+# 依存パッケージ
+node_modules
+
+# ビルド成果物
+dist
+
+# 環境変数（Supabase認証情報を含む）
+.env
+.env.local
+.env.*.local
+
+# エディタ・OS固有ファイル
+.DS_Store
+.vscode/
+*.local
